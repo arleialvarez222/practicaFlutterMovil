@@ -16,17 +16,22 @@ class HomePage extends StatelessWidget {
           direction: Axis.horizontal,
           spacing: 10.0,
           children: <Widget>[
-            const Tag(
+            Tag(
               icon: Icons.warning_amber_outlined, color: Colors.yellow, 
               texto: "5 productos estan por expirar",
+              //onPressed: () => Navigator.pushNamed(context, 'productExpire'),
             ),
+
             Tag(
               icon: Icons.warning_amber_outlined, color: Colors.red.shade500, 
               texto: "5 productos estan vencidos",
+               //onPressed: () => Navigator.pushNamed(context, 'productExpire'),
             ),
-            const Tag(
+
+            Tag(
               icon: Icons.check_circle_outline, color: Colors.green, 
               texto: "50 productos estan disponibles",
+               //onPressed: () => Navigator.pushNamed(context, 'productExpire'),
             ),
 
            

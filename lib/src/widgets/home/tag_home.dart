@@ -5,12 +5,14 @@ class Tag extends StatelessWidget {
   final IconData icon;
   final Color color;
   final String texto;
+  //final Function onPressed;
 
   const Tag({
     Key? key,
     required this.icon,
     required this.texto, 
     required this.color,
+    //required this.onPressed,
   }) : super(key: key);
 
 
@@ -27,7 +29,7 @@ class Tag extends StatelessWidget {
         child: Stack(
           alignment: Alignment.bottomLeft,
           children: <Widget>[
-            _DetailsHome(icon: icon, texto: texto, color: color,)
+            _DetailsHome(icon: icon, texto: texto, color: color, )
           ],
           
         )
@@ -54,12 +56,14 @@ class _DetailsHome extends StatelessWidget {
   final IconData icon;
   final String texto;
   final Color color;
+  ///final Function onPressed;
 
   const _DetailsHome( {
     Key? key, 
     required this.icon,
     required this.texto,
     required this.color,
+    //required this.onPressed,
   }) : super(key: key);
 
   @override
@@ -99,3 +103,36 @@ class _DetailsHome extends StatelessWidget {
     
   );
 }
+
+
+
+
+/* 
+return Padding(
+      padding: const EdgeInsets.only(right: 0),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        width: double.infinity,
+        height: 200,
+        decoration: _buildBoxDecoration(),
+        child: Center(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Container(
+                child: Icon(icon, color: color, size: 100,),
+              ),
+
+              Container(
+                child: Text(texto, style: const TextStyle(fontSize: 20, color: Colors.black, fontWeight: FontWeight.bold),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+              ),
+              )
+              
+            ],
+          ),
+        ),
+      ),
+    );
+ */

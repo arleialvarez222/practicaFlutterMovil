@@ -11,6 +11,7 @@ class ProductForm extends StatelessWidget {
         title: const Text(' Add Product'),
       ),
       body: SingleChildScrollView(
+        keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
         child: Column(
           children: const [
             
