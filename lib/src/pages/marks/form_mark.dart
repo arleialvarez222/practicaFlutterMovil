@@ -1,42 +1,41 @@
 import 'package:flutter/material.dart';
-import 'package:handling_cupboard/src/providers/categories_provider.dart';
-import 'package:handling_cupboard/src/services/categori_service.dart';
+import 'package:handling_cupboard/src/providers/mark_provider.dart';
+import 'package:handling_cupboard/src/services/mark_service.dart';
 import 'package:handling_cupboard/src/widgets/form/input_decoration.dart';
 import 'package:provider/provider.dart';
 
-class CategoriesForm extends StatelessWidget {
-  const CategoriesForm({ Key? key }) : super(key: key);
+class FormMark extends StatelessWidget {
+  const FormMark({ Key? key }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
 
-    final categoryService = Provider.of<CategoriService>(context);
+    final markService = Provider.of<MarkService>(context);
 
     return ChangeNotifierProvider(
-      create: (_) => CategoriProvider(categoryService.selCategorie),
-      child: _CategoriForm(categoryService: categoryService,),
+      create: (_) => MarkProvider(markService.selectMark),
+      child: _MarkForm(markService: markService,),
     );
-    
   }
 }
 
-class _CategoriForm extends StatelessWidget {
+class _MarkForm extends StatelessWidget {
 
-  final CategoriService categoryService;
-  const _CategoriForm({ 
+  final MarkService markService;
+  const _MarkForm({ 
     Key? key,
-    required this.categoryService,
+    required this.markService,
    }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
 
-    final categoryForm = Provider.of<CategoriProvider>(context);
-    final category = categoryForm.categoria;
+    final markForm = Provider.of<MarkProvider>(context);
+    final markk = markForm.mark;
 
     return Scaffold(
     appBar: AppBar(
-      title: const Text('Add Category'),
+      title: const Text('Add Mark'),
       centerTitle: true,
     ),
     body: Center(
@@ -48,7 +47,6 @@ class _CategoriForm extends StatelessWidget {
           }
         },
         child: SingleChildScrollView(
-          //keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Container(
@@ -56,7 +54,7 @@ class _CategoriForm extends StatelessWidget {
               width: double.infinity,
               decoration: _buildDecoration(),
               child: Form(
-                key: categoryForm.formKey,
+                key: markForm.formKey,
                 autovalidateMode: AutovalidateMode.onUserInteraction,
                 child: Column(
                   children: [
@@ -64,15 +62,15 @@ class _CategoriForm extends StatelessWidget {
                     const SizedBox(height: 30,),
       
                     TextFormField(
-                      initialValue: category.name,
-                      onChanged: (value) => category.name = value,
+                      initialValue: markk.mark,
+                      onChanged: (value) => markk.mark = value,
                       validator: (value) {
                         if(value == null || value.isEmpty){
                           return 'Este campo es obligatorio';
                         }
                       },
                       decoration: InputDecorations.authInputDecoration(
-                        hintText: 'Name category', 
+                        hintText: 'Name mark', 
                         labelText: 'Name',
                       ),
                     ),
@@ -91,32 +89,31 @@ class _CategoriForm extends StatelessWidget {
                           style: TextStyle(color: Colors.white, fontSize: 25),
                         ),
                       ),
-                      onPressed: categoryService.isSaving ? null : () async{
-                        if(!categoryForm.isValidForm()) return;
-                        await categoryService.saveOrUpdateCategory(categoryForm.categoria);
+                      onPressed: markService.isSaving ? null : () async{
+                        if(!markForm.isValidForm()) return;
+                        await markService.saveOrUpdateMark(markForm.mark);
                         
                       },
                     ),
       
-              const SizedBox(height: 20,),
+                    const SizedBox(height: 20,),
       
-              MaterialButton(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                disabledColor: Colors.grey,
-                elevation: 0,
-                minWidth: double.infinity,
-                color: Colors.red,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
-                  child: const Text( 'Cancel',
-                    style: TextStyle(color: Colors.white, fontSize: 25),
-                  ),
-                ),
-                onPressed: (){
-                  Navigator.of(context).pop();
-                  //Navigator.pushReplacementNamed(context, 'categories');
-                },
-              ),
+                    MaterialButton(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                      disabledColor: Colors.grey,
+                      elevation: 0,
+                      minWidth: double.infinity,
+                      color: Colors.red,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 80, vertical: 15),
+                        child: const Text( 'Cancel',
+                          style: TextStyle(color: Colors.white, fontSize: 25),
+                        ),
+                      ),
+                      onPressed: (){
+                        Navigator.of(context).pop();
+                      },
+                    ),
       
                   ],
                 )

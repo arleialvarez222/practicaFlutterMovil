@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:handling_cupboard/src/models/categories_model.dart';
-//import 'package:google_fonts/google_fonts.dart';
+import 'package:handling_cupboard/src/models/mark_model.dart';
 
-class CategoryCard extends StatelessWidget {
-  
-  final Categories categories;
-  //final dynamic name;
-  final double height;
+class MarkCard extends StatelessWidget {
 
-  const CategoryCard({
+  //final Categories categories;
+  //final double height; 
+
+  final Mark mark;
+
+  const MarkCard({
     Key? key, 
-   // required this.name,
-    required this.categories,
-    required this.height,
+    required this.mark, 
+    //required this.height,
+    /* required this.categories, */
   }) : super(key: key);
 
   @override
@@ -22,13 +22,13 @@ class CategoryCard extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.only(top: 30, bottom: 0),
         width: double.infinity,
-        height: height,
+        height: 70,
         decoration: _cardBorders(),
         child: Stack(
           alignment: Alignment.bottomLeft, 
           children: [
         
-             _DetailsCategory(nombre: categories.name, height: height,),
+             _DetailsMark( nameMark: mark.mark,),
 
           ],
         ),
@@ -47,17 +47,15 @@ class CategoryCard extends StatelessWidget {
       )
     ]
   );
-
 }
 
-class _DetailsCategory extends StatelessWidget {
-  final dynamic nombre;
-  final double height;
+class _DetailsMark extends StatelessWidget {
 
-  const _DetailsCategory( {
-    Key? key, 
-    required this.nombre, 
-    required this.height, 
+  final dynamic nameMark;
+
+  const _DetailsMark( {
+    Key? key,  
+    required this.nameMark
   }) : super(key: key);
 
   @override
@@ -67,12 +65,12 @@ class _DetailsCategory extends StatelessWidget {
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         width: double.infinity,
-        height: height,
+        height: 70,
         decoration: _buildBoxDecoration(),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: <Widget>[
-            Text(nombre, style: const TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+            Text(nameMark, style: const TextStyle(fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
             ),

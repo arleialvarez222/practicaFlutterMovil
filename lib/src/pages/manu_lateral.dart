@@ -3,6 +3,7 @@ import 'package:handling_cupboard/src/pages/categories/categories.dart';
 import 'package:handling_cupboard/src/pages/cupboard/cupboard.dart';
 import 'package:handling_cupboard/src/pages/home/home_page.dart';
 import 'package:handling_cupboard/src/pages/Products/products_page.dart';
+import 'package:handling_cupboard/src/pages/marks/mark.dart';
 import 'package:handling_cupboard/src/services/auth_service.dart';
 import 'package:hidden_drawer_menu/hidden_drawer_menu.dart';
 import 'package:hidden_drawer_menu/model/item_hidden_menu.dart';
@@ -60,7 +61,14 @@ class _MenuLateralState extends State<MenuLateral> {
         ),
         const CupboardPage()));
 
-  
+    items.add(ScreenHiddenDrawer(
+        ItemHiddenMenu(
+          name: "Mark",
+          baseStyle: TextStyle( color: Colors.white.withOpacity(0.8), fontSize: 28.0 ),
+          colorLineSelected: Colors.orange,
+          selectedStyle: const TextStyle(color: Colors.white),
+        ),
+        const MarkPage()));
 
     super.initState();
   }

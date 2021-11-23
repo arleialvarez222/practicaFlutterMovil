@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
+//import 'package:handling_cupboard/src/models/categories_model.dart';
 
 class ProductCard extends StatelessWidget {
 
+  //final Categories categories;
+  final double height; 
+
   final dynamic name;
   final dynamic marca;
-  final double height;
 
   const ProductCard({
     Key? key, 
     required this.name,
+    this.marca, 
     required this.height,
-    this.marca,
+    /* required this.categories, */
   }) : super(key: key);
 
   @override
